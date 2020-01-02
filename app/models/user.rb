@@ -10,5 +10,7 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :email
 
+  enum role: ["default", "merchant", "admin"]
+
   has_secure_password
 end
