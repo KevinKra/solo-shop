@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :merchants do
+    get "/dashboard", to: "dashboard#show"
+  end
+
+  namespace :admin do
+    get "/dashboard", to: "dashboard#show"
+  end
+
   get "/register", to: "users#new"
   post "/register", to: "users#create"
 
