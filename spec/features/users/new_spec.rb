@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "user#new" do
+RSpec.describe "users#new" do
   user = {
     name: "Steve",
     street_address: "233 Woodfin Lake",
