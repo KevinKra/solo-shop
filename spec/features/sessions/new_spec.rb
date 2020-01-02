@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "sessions#new" do
   let(:user) { create(:user, :default_user) }
   let(:merchant) { create(:user, :merchant_user) }
-  let(:admin) { create(:admin, :admin_user) }
+  let(:admin) { create(:user, :admin_user) }
 
   before { visit "/login" }
 
@@ -18,12 +18,6 @@ RSpec.describe "sessions#new" do
 
       it "redirects the user to their profile page" do
         expect(current_path).to eq("/profile")
-      end
-
-      it "user is a default user type" do
-        expect(user.role).to eq("default")
-        expect(user.role).not_to eq("merchant")
-        expect(user.role).not_to eq("admin")
       end
 
       it "displays a default success flash message" do
@@ -44,13 +38,15 @@ RSpec.describe "sessions#new" do
     }
 
     context "valid credentials" do
-      it "redirects the user to their profile page" do
+      it "redirects the merchant to their dashboard page" do
         expect(current_path).to eq("/merchants/dashboard")
       end
 
-      it "displays a default success flash message" do
+      it "displays a merchant success flash message" do
         within("#main-flash") do
-          expect(page).to have_content("Welcome, #{user.name}. You have been successfully logged in as a Merchant.")
+          expect(page).to have_content("Welcome, #{merchant.name}. You have been successfully logged in as a Merchant.")
+          expect(page).not_to have_content(user.name)
+          expect(page).not_to have_content(admin.name)
         end
       end
     end
@@ -65,7 +61,17 @@ RSpec.describe "sessions#new" do
     }
 
     context "valid credentials" do
-      
+      it "redirects the admin to their dashboard page" do
+        expect(current_path).to eq("/admin/dashboard")
+      end
+
+      it "displays a admin success flash message" do
+        within("#main-flash") do
+          expect(page).to have_content("Welcome, #{admin.name}. You have been successfully logged in as an Admin.")
+          expect(page).not_to have_content(user.name)
+          expect(page).not_to have_content(merchant.name)
+        end
+      end
     end
 
   end

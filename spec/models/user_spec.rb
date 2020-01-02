@@ -35,11 +35,37 @@ RSpec.describe User, type: :model do
     end
 
     it "user can be created as a merchant user" do
+      user = User.create!(
+        name: "user",
+        street_address: "305 Westin Road",
+        city: "Detroit",
+        state: "Michigan",
+        zip_code: 47308,
+        email: "user@gmail.com",
+        password: "password",
+        password_confirmation: "password",
+        role: 1
+      )
 
+      expect(user.role).to eq("merchant")
+      expect(user.merchant?).to be_truthy
     end
 
     it "user can be created as an admin user" do
+      user = User.create!(
+        name: "user",
+        street_address: "305 Westin Road",
+        city: "Detroit",
+        state: "Michigan",
+        zip_code: 47308,
+        email: "user@gmail.com",
+        password: "password",
+        password_confirmation: "password",
+        role: 2
+      )
 
+      expect(user.role).to eq("admin")
+      expect(user.admin?).to be_truthy
     end
   end
 end
