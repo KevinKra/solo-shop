@@ -1,5 +1,16 @@
 class SessionsController < ApplicationController
   def new
+    flash_message = "Whoops, looks like you're already logged in!"
+    if user_role("default")
+      redirect_to "/profile"
+      flash[:success] = flash_message
+    elsif user_role("merchant")
+      redirect_to "/merchants/dashboard"
+      flash[:success] = flash_message
+    elsif user_role("admin")
+      redirect_to "/admin/dashboard"
+      flash[:success] = flash_message
+    end
   end
 
   def create
@@ -24,4 +35,11 @@ class SessionsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    reset_session
+    flash[:success] = "You have been successfully logged out."
+    redirect_to "/"
+  end
+
 end
