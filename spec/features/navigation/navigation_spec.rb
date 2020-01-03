@@ -42,17 +42,56 @@ RSpec.describe "navigation menu" do
     end
 
     context "when a user is logged in" do
+      after(:each) do
+        within("#main-navbar") do
+          expect(page).to have_link('Home', href: "/")
+          expect(page).to have_link('All Items', href: "/items")
+          expect(page).to have_link('All Merchants', href: "/merchants")
+          expect(page).to have_link("Profile", href: "/profile")
+        end
+      end
       
-      xit "as a default user they see a profile link" do
+      it "as a default user they see a profile link" do
+        visit "/login"
+        fill_in :email, with: user.email
+        fill_in :password, with: user.password
+        click_on "Login to Account"
 
+        within("#main-navbar") do
+          expect(page).to have_link("Cart", href: "/cart")
+          expect(page).not_to have_content("All Users")
+          expect(page).not_to have_content("Admin Dashboard")
+          expect(page).not_to have_content("Merchant Dashboard")
+        end
       end
 
-      xit "as a merchant user they see a merchants dashboard link" do
+      it "as a merchant user they see a merchant specific content" do
+        visit "/login"
+        fill_in :email, with: merchant.email
+        fill_in :password, with: merchant.password
+        click_on "Login to Account"
 
+        within("#main-navbar") do
+          expect(page).to have_link("Merchant Dashboard", href: "/merchant")
+          expect(page).to have_link("Cart", href: "/cart")
+          expect(page).not_to have_content("All Users")
+          expect(page).not_to have_content("Admin Dashboard")
+        end
       end
 
-      xit "as an admin user they see an admin dashboard link" do
+      it "as an admin user they see an admin specific content" do
+        visit "/login"
+        fill_in :email, with: admin.email
+        fill_in :password, with: admin.password
+        click_on "Login to Account"
 
+        within("#main-navbar") do
+          expect(page).to have_link("Admin Dashboard", href: "/admin")
+          expect(page).to have_link("See all Users", href: "/admin/users")
+          expect(page).not_to have_content("All Users")
+          expect(page).not_to have_content("Merchant Dashboard")
+          expect(page).not_to have_content("Cart")
+        end
       end
 
     end
