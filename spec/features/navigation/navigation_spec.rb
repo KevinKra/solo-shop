@@ -12,6 +12,21 @@ RSpec.describe "navigation menu" do
         expect(page).to have_link('Home', href: "/")
       end
     end
+    it "has a items link" do
+      within("#main-navbar") do
+        expect(page).to have_link('All Items', href: "/items")
+      end
+    end
+    it "has a merchants link" do
+      within("#main-navbar") do
+        expect(page).to have_link('All Merchants', href: "/merchants")
+      end
+    end
+    it "has a cart link" do
+      within("#main-navbar") do
+        expect(page).to have_link('Cart', href: "/cart")
+      end
+    end
   end
 
   describe "login behaviors" do
