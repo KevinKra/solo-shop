@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <nav id="main-navbar">
+      <%= link_to "Home", "/" %>
+      <% if current_user %>
+        <%= link_to "Logout", "/logout" %>
+        <p>Logged in as <%= @current_user.name %></p>
+      <% else %>
+        <%= link_to "Login", "/login" %>
+        <%= link_to "Register", "/register" %>
+      <% end %>
+    </nav>
     <% flash.each do |name, msg| %>
       <section class= "<%=name%>-flash" id="main-flash">
         <p><%= msg %></p>
