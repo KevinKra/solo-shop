@@ -76,7 +76,7 @@ RSpec.describe "sessions#new" do
 
   end
 
-  context "user attempts to login with invalid credentials" do
+  describe "user attempts to login with invalid credentials" do
     before {
       fill_in :email, with: user.email
       fill_in :password, with: "wrong_password"
@@ -95,5 +95,36 @@ RSpec.describe "sessions#new" do
 
   end
 
+  describe "user attempts to visit login page while already logged in" do
+    after(:each) do
+      within("#main-flash") do
+        expect(page).to have_content("Whoops, looks like you're already logged in!")
+      end
+    end
 
+    it "as a default user it should redirect them to the profile page" do
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on "Login to Account"
+      visit "/login"
+      expect(current_path).to eq("/profile")
+    end
+
+    it "as a merchant user it should redirect them to the merchant dashboard page" do
+      fill_in :email, with: merchant.email
+      fill_in :password, with: merchant.password
+      click_on "Login to Account"
+      visit "/login"
+      expect(current_path).to eq("/merchants/dashboard")
+    end
+
+    it "as an admin user it should redirect them to the admin dashboard page" do
+      fill_in :email, with: admin.email
+      fill_in :password, with: admin.password
+      click_on "Login to Account"
+      visit "/login"
+      expect(current_path).to eq("/admin/dashboard")
+    end
+
+  end
 end
