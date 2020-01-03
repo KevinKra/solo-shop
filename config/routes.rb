@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "home#index"
+
   namespace :merchants do
     get "/dashboard", to: "dashboard#show"
   end
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
+  get "/logout", to: "sessions#destroy"
 
   get "/profile", to: "users#index"
 end
