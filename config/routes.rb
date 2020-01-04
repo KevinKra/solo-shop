@@ -9,12 +9,16 @@ Rails.application.routes.draw do
     get "/dashboard", to: "dashboard#show"
   end
 
+  #users
+  get "/profile", to: "users#index"
   get "/register", to: "users#new"
   post "/register", to: "users#create"
 
+  # session
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
 
-  get "/profile", to: "users#index"
+  #items
+  get "/items", to: "items#index"
 end
