@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  def index
+  before_action :require_user, only: [:index]
 
+  def index
   end
 
   def new
@@ -30,5 +31,9 @@ class UsersController < ApplicationController
         :password,
         :password_confirmation
       )
+    end
+
+    def require_user
+      not_found unless @current_user
     end
 end
