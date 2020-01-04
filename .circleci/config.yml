@@ -22,8 +22,12 @@ jobs:
         key: solo-shop-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
-
+        run:
+          name: install dependencies
+          command: |
+            gem update --system
+            gem install bundler
+            
       # Cache Dependencies
       - type: cache-save
         name: Store bundle cache
