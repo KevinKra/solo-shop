@@ -24,7 +24,7 @@ jobs:
       # Bundle install dependencies
         run:
           name: install dependencies
-          command: |
+          command:
             gem update --system
             gem install bundler
 
