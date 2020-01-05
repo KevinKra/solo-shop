@@ -36,7 +36,7 @@ item_1 = Item.create!(
   name: "Polo Shirt",
   description: "A fine fitting gingham pattern Polo Shirt from Ralph Lauren.",
   price: 7499,
-  image: "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwj267SO6-rmAhVVXM0KHS7BBkwQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.macys.com%2Fshop%2Fproduct%2Fpolo-ralph-lauren-mens-classic-fit-cotton-gingham-shirt%3FID%3D6843975&psig=AOvVaw02HORLiBdkZejXTGu40nV7&ust=1578257929235413",
+  image: "https://www.rlmedia.io/is/image/PoloGSI/s7-1266692_lifestyle?$rl_506_630$",
   active: true,
   inventory: 160,
   gender: 0
@@ -53,16 +53,6 @@ item_2 = Item.create!(
 )
 
 item_3 = Item.create!(
-  name: "Fringe-Trim Wool Sweater",
-  description: "Fashionable and rustic, for those in touch with nature.",
-  price: 44800,
-  image: "https://www.rlmedia.io/is/image/PoloGSI/s7-1352117_lifestyle?$rl_506_630$",
-  active: true,
-  inventory: 90,
-  gender: 1
-)
-
-item_4 = Item.create!(
   name: "Fringe-Trim Wool Sweater",
   description: "Fashionable and rustic, for those in touch with nature.",
   price: 44800,
