@@ -21,4 +21,5 @@ Rails.application.routes.draw do
 
   #items
   get "/items", to: "items#index"
+  get "/items/:id", to: "items#show"
 end
