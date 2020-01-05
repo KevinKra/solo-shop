@@ -1,0 +1,10 @@
+<h3>Items#index</h3>
+<% @active_items.each do |item| %>
+  <section class="item" id="item-<%= item.id %>">
+    <h4><%=link_to item.name, "/items/#{item.id}" %></h4>
+    <p><%= item.description %></p>
+    <p>Price: <%= item.price %></p>
+    <p><%= item.inventory %></p>
+    <%= image_tag item.image %>
+  </section>
+<% end %>
