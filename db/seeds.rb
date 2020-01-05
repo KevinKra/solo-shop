@@ -61,3 +61,13 @@ item_3 = Item.create!(
   inventory: 90,
   gender: 1
 )
+
+item_4 = Item.create!(
+  name: "Fringe-Trim Wool Sweater",
+  description: "Fashionable and rustic, for those in touch with nature.",
+  price: 44800,
+  image: "https://www.rlmedia.io/is/image/PoloGSI/s7-1352117_lifestyle?$rl_506_630$",
+  active: false,
+  inventory: 90,
+  gender: 1
+)
